@@ -25,7 +25,19 @@
 ​		Instruction set architecture（ISA 指令集架构）
 
 ##### Analog Computing（模拟计算机）：
+
+​		与数字计算机运用数字电路处理**离散的数字信号**不同，模拟计算机使用电子器件或机械、液压等物理量，来处理**连续的模拟信号**，以模拟实际物理过程或事件。
+
 Digital computing（数字计算机） | Analogcomputing（模拟计算机）
 :-:|:-:
 Accurate when encoded in many bits（以多位编码时较准确）| Less precision affected by noise （易受到模拟噪声的影响而导致不准确）
 Scalable（可扩展的，因其本身依赖于数以亿计的晶体管组成的半导体电路） | Diffucult to integrate（难以集成，因为模拟噪声和错误会在级联电路中累积）
+General Purpose（通用性） | Application-specific（特定应用）
+Computational heavy（计算密集型） | Fast by nature（在模拟相关物理变化等响应较快）
+Compute-only（专注于计算任务） | Sensors and actuators are mostly analog（传感器和执行器大多数是模拟的）
+
+*模拟计算在AI领域的复兴能够帮助其克服冯·诺伊曼瓶颈*
+
+##### What is a computer?
+
+​		
