@@ -90,15 +90,15 @@ Compute-only（专注于计算任务） | Sensors and actuators are mostly analo
 ​	Yield （晶圆良率）：完成所有工艺步骤后测试合格的芯片的数量与整片晶圆上的有效芯片的比值 。
 
 $$
-\Large \rm{Dies \, per \, wafer \approx \frac{Wafer \, area}{Die \, area}  \tag{1}}
+\Large \rm{Dies \ per \ wafer \approx \frac{Wafer \ area}{Die \ area}  \tag{1}}
 $$
 
 $$
-\Large \rm{Yield = \frac{1}{(1+\frac{Defects \, per \, area \times Die \, area}{2})^2} \tag{2}}
+\Large \rm{Yield = \frac{1}{(1+\frac{Defects \ per \ area \times Die \ area}{2})^2} \tag{2}}
 $$
 
 $$
-\Large \rm{Cost \, per \, die =\frac{Cost \, per \, wafer}{Dies \, per \, wafer \times Yield} \tag{3}}
+\Large \rm{Cost \ per \ die =\frac{Cost \ per \ wafer}{Dies \ per \ wafer \times Yield} \tag{3}}
 $$
 
 ​	公式（1）为估算所得，公式（2）基于对集成电路工厂产量的经验观察，而指数与关键处理步骤的数量有关，公式（3）为直接推导可得。
@@ -124,12 +124,12 @@ $$
 ### Relative Performance
 
 $$
-\Large \rm{performance（性能）= \frac{1}{execution \, time}}
+\Large \rm{performance（性能）= \frac{1}{execution \ time}}
 $$
 
 ​	We know that X is ${\it {n}}$ times as fast as Y if
 $$
-\Large \rm{\frac{performance_X}{performance_Y} = \frac{execution \, time_Y}{execution \, time_X} =} \, \it n
+\Large \rm{\frac{performance_X}{performance_Y} = \frac{execution \ time_Y}{execution \ time_X} =} \ \it n
 $$
 
 ### Measuring Execution Time
@@ -137,7 +137,7 @@ $$
 #### 	elapsed time（实际运行时间）：determines system performance（真正决定系统性能）
 
 $$
-{\rm {elapsed \, time \, = \, I/O \, time \,(输入输出所占时间) \,+ \, processing \, time \, + \, OS \, overhead \, （系统开销） \, + \, idle \, time \, （空闲时间）} }
+{\rm {elapsed \ time \ = \ I/O \ time \(输入输出所占时间) \+ \ processing \ time \ + \ OS \ overhead \ （系统开销） \ + \ idle \ time \ （空闲时间）} }
 $$
 
 #### CPU time（CPU时间）：time spent processing a given job（忽视I/O时间和其他时间）
@@ -148,12 +148,12 @@ $$
 
 #### clock frequency/clock rate（时钟频率）：cycles per second（每秒钟的时钟周期数）
 $$
-\Large {\rm {clock \, frequency \, = \, \frac{1}{clock \, period}}}
+\Large {\rm {clock \ frequency \ = \ \frac{1}{clock \ period}}}
 $$
 #### CPU Time：
 
 $$
-\large {\rm {CPU \, Time \, = \, CPU \, Clock \, Cycles \, （时钟周期数）\times \, Clock \, Cycle \, Time \, = \, \frac{CPU \, Clock \, Cycles}{Clock \, Rate}}}
+\large {\rm {CPU \ Time \ = \ CPU \ Clock \ Cycles \ （时钟周期数）\times \ Clock \ Cycle \ Time \ = \ \frac{CPU \ Clock \ Cycles}{Clock \ Rate}}}
 $$
 
 ​	改善CPU Time的方法：
@@ -167,11 +167,11 @@ $$
 ### Instruction Count and CPI（Cycles per Instruction 执行一个指令所占时钟周期数）
 
 $$
-\Large {\rm {Clock \, Cycles \, = \, Instruction \, Count \, \times \, Cycles \, per \, Instruction \,  (CPI)}}
+\Large {\rm {Clock \ Cycles \ = \ Instruction \ Count \ \times \ Cycles \ per \ Instruction \  (CPI)}}
 $$
 
 $$
-\large {\rm {CPU \, Time \, = \, Instruction \, Count \, \times \,CPI \, \times \, Clock \, Cycle \, Time \, = \, \frac{Instruction \, Count \, \times \, CPI}{Clock \, Rate}}}
+\large {\rm {CPU \ Time \ = \ Instruction \ Count \ \times \CPI \ \times \ Clock \ Cycle \ Time \ = \ \frac{Instruction \ Count \ \times \ CPI}{Clock \ Rate}}}
 $$
 
 ​	Instructionn Count for a program is determined by **Program,ISA(指令集) and compiler**
@@ -183,21 +183,21 @@ $$
 ​	当不同的指令类分别有各自的时钟周期数时：
 
 $$
-\Large {\rm {Clock \, Cycles \, = \, \sum_{i=1}^{n}{(CPI_{i} \, \times \, Instruction \, Count_i)}}}
+\Large {\rm {Clock \ Cycles \ = \ \sum_{i=1}^{n}{(CPI_{i} \ \times \ Instruction \ Count_i)}}}
 $$
 
 $$
-\Large {\rm {CPI \, = \, \frac{Clock \, Cycles}{Instruction \, Count} \, = \, \sum_{i=1}^{n}{(CPI_i \, \times \, \frac{Instruction \, Count_i}{Instruction \, Count})}}}
+\Large {\rm {CPI \ = \ \frac{Clock \ Cycles}{Instruction \ Count} \ = \ \sum_{i=1}^{n}{(CPI_i \ \times \ \frac{Instruction \ Count_i}{Instruction \ Count})}}}
 $$
 
 ### Summary
 
 $$
-\Large {\rm {CPU \, Time \, = \, \frac{Instructions}{Program} \, \times \, \frac{Clock \, Cycles}{Instruction} \, \times \, \frac{Seconds}{Clock \, cycle}}}
+\Large {\rm {CPU \ Time \ = \ \frac{Instructions}{Program} \ \times \ \frac{Clock \ Cycles}{Instruction} \ \times \ \frac{Seconds}{Clock \ cycle}}}
 $$
 
 $$
-\Large {\rm {CPU \, Time \, = \, 每个程序包含指令数 \, \times \, 每条指令的时钟周期数 \, \times \, 每个时钟周期是多长时间}}
+\Large {\rm {CPU \ Time \ = \ 每个程序包含指令数 \ \times \ 每条指令的时钟周期数 \ \times \ 每个时钟周期是多长时间}}
 $$
 
 ​	影响因素：
@@ -213,7 +213,7 @@ $$
 ## Power 
 
 $$
-\Large {\rm {Power（功率） \, = \, Capacitive \, load \, （电容负载） \, \times \, Voltage^2 \, \times \, Frequency}}
+\Large {\rm {Power（功率） \ = \ Capacitive \ load \ （电容负载） \ \times \ Voltage^2 \ \times \ Frequency}}
 $$
 
 ​		power wall（功率壁垒）：不能更好地降低功率、不能更好地散热
@@ -221,7 +221,7 @@ $$
 ## Amdahl's Law（阿姆达尔定律）
 
 $$
-\Large {\rm {T_{imporved} \, = \, \frac{T_{affected}}{improvement \, factor} \, + \, T_{unaffected}}}
+\Large {\rm {T_{imporved} \ = \ \frac{T_{affected}}{improvement \ factor} \ + \ T_{unaffected}}}
 $$
 
 ​	系统优化后的时间为未优化部分的时间和优化部分后的时间和
