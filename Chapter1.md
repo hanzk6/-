@@ -171,7 +171,7 @@ $$
 $$
 
 $$
-\large {\rm {CPU \ Time \ = \ Instruction \ Count \ \times \CPI \ \times \ Clock \ Cycle \ Time \ = \ \frac{Instruction \ Count \ \times \ CPI}{Clock \ Rate}}}
+\large {\rm {CPU \ Time \ = \ Instruction \ Count \ \times \ CPI \ \times \ Clock \ Cycle \ Time \ = \ \frac{Instruction \ Count \ \times \ CPI}{Clock \ Rate}}}
 $$
 
 ​	Instructionn Count for a program is determined by **Program,ISA(指令集) and compiler**
