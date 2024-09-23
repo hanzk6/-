@@ -137,7 +137,7 @@ $$
 #### 	elapsed time（实际运行时间）：determines system performance（真正决定系统性能）
 
 $$
-{\rm {elapsed \ time \ = \ I/O \ time \(输入输出所占时间) \+ \ processing \ time \ + \ OS \ overhead \ （系统开销） \ + \ idle \ time \ （空闲时间）} }
+{\rm {elapsed \ time \ = \ I/O \ time \ (输入输出所占时间) \ + \ processing \ time \ + \ OS \ overhead \ （系统开销） \ + \ idle \ time \ （空闲时间）} }
 $$
 
 #### CPU time（CPU时间）：time spent processing a given job（忽视I/O时间和其他时间）
