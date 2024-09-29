@@ -30,7 +30,7 @@
 
 ​			由于二进制补码可以表示的数的范围为-128~+127，因此可以根据符号位（在某些书中称为负权）判断是否存在溢出现象。
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927113021340.png" alt="image-20240927113021340" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927113021340.png?token=BF3QKB3ZCJT2AZVGRBNY5P3G7DRPY" style="zoom:50%;" />
 
 ​			两正数做加法时，如果产生溢出，则溢出进位必然会使符号位变为1，则可以判断其是个负数，不符合常理，因此溢出；
 
@@ -66,11 +66,13 @@
 
 #### 			半加器和全加器
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927143410600.png" alt="image-20240927143410600" style="zoom: 67%;" /><img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927143445388.png" alt="image-20240927143445388" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927143410600.png?token=BF3QKBY5PSEGFSNBW2IKPD3G7DRQE" style="zoom:67%;" />
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927143445388.png?token=BF3QKB6YNYU473SXISQZJVDG7DRQQ" style="zoom:50%;" />
 
 ​			数逻中已经提到，在减法转化为加法时只需要将减数取反，并将进位CarryIn设置为1即可实现，因此我们得到了下面的ALU，此ALU具有与、或、加、减四种功能。
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927150107700.png" alt="image-20240927150107700" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927150107700.png?token=BF3QKB52NBSYMMYKFBU4GRTG7DRQ4" style="zoom:50%;" />
 
 ​			在此基础上，我们可以进行进一步的扩展：
 
@@ -86,23 +88,23 @@
 
 ​				由上述讨论可以看到，**最高位（符号位）在判断溢出、两数比较中十分重要**，因此可以将最高位的结果单独作为一个输入组成一个模块，用于判断是否溢出和比较关系。改进后的ALU如下图所示：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927162845728.png" alt="image-20240927162845728" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927162845728.png?token=BF3QKB3HPKFW73HTRQP7WD3G7DRRM" style="zoom:67%;" />
 
 #### 		完全体ALU
 
 ​			以上均为单位ALU的组装，当我们将多个这样的单位ALU组装起来，再进行一些调试，就可以形成一个完全体ALU。构造如下：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927202037240.png" alt="image-20240927202037240" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927202011555.png?token=BF3QKBZYCJ3LZPTEGY3HHCDG7DRR2" style="zoom:50%;" />
 
 ​			特点：并行输入、每位的进位级联在一起、是一种波纹进位加法器（ripple carry adder）
 
 ​			但其有个致命的问题：在两数相等时，无法仅通过最高位判断二者是否相等，因此需要将每一位的结果再通过一个或非门判断相减结果是否均为零（是否相等），改进后的结果如下图所示：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927202735169.png" alt="image-20240927202735169" style="zoom: 33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927202037240.png?token=BF3QKB277SWIHJ6PYKJ75STG7DRSI" style="zoom:33%;" />
 
-​		在电路图中，ALU通常为如下的标志（并不是所有ALU都会有上述所有功能）：
+​		在逻辑设计图中，ALU通常为如下的标志（并不是所有ALU都会有上述所有功能）：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240927203842211.png" alt="image-20240927203842211" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927203842211.png?token=BF3QKB7QZNWSJS6QLDEFOGDG7DRTE" style="zoom:33%;" />
 
 ​		运行时间分析：
 
@@ -132,19 +134,19 @@ $$
 
 ​		以16位的超前进位加法器为例，其可以被分为四个子模块，然后再将其串起来，得到以下结构：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928143950552.png" alt="image-20240928143950552" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240928143950552.png?token=BF3QKBZG7DUBUOJ5ZAAUTU3G7DRTW" style="zoom:33%;" />
 
 ​		每一个子结构又如下所示：
 
 ​	<img src="https://img-blog.csdnimg.cn/be825dbc23da4e57a4289d34ba30a76d.png" alt="CLA" style="zoom:50%;" />
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928144050505.png" alt="image-20240928144050505" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240928144050505.png?token=BF3QKBZDHVSPK2TIFITDIBTG7DRUC" style="zoom:67%;" />
 
 #### 	Carry Skip Adder(进位跳过加法器、进位旁路加法器)
 
 ​		进位跳过加法器是一种在面对最坏情况时较为快捷的处理进位的方法，其将整个 $N$ 位的加法拆分为每个具有位宽 $k$ 的块，在块之间使用一个**二选一复用器**连接，如果 $b$ 位的两个加数异或后得到的结果（也就是上文的 $P_i$ ）均为1，则将从前一块得到的进位 $C_i$ 直接传递给下一级作为 $C_{i+1}$ ，这样当我们遇到诸如11111111+00000001这样需要多次进位的加法时会节省部分时间。每个块的设计思路如下图所示：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928150232998.png" alt="image-20240928150232998" style="zoom: 33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240928150232998.png?token=BF3QKB4Z7DJZ44J33O5WPC3G7DRUU" style="zoom:33%;" />
 
 ​		根据理论表明，当每一个小块的位宽为 $k$ 时，该加法器所需要的理论最长时间为：
 
@@ -155,7 +157,7 @@ $$
 
 ​		注：$t_{sum}$ 为一位加法器得到本位结果的时间，也就是两个异或门的时间； $t_{carry}$ 为一位加法器得到其进位结果的时间，也就是一个二输入与门和一个二输入或门组合的时间，具体可参考下图或视频：[Binary Adder - Carry Skip Adder (Carry bypass adder) (youtube.com)](https://www.youtube.com/watch?v=WmIFFhJYzO0&t=355s)
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928151004487.png" alt="image-20240928151004487" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240928151004487.png?token=BF3QKB3W4XTHXOSO3UKN4R3G7DRVG" style="zoom:50%;" />
 
 ​		上述结果通过数学知识可得，当 $k$ 的值为下值时，效率最高：
 
@@ -165,9 +167,9 @@ $$
 
 ####	Carry Select Adder(CSA,进位选择加法器)
 
-​		进位选择加法器的原理也是将固定位数的加法运算分成更小的”块“，并在块中运用两个加法器分别计算进位分别是1、0的结果，最后由二选一复用器决定采用什么作为最后的结果。不同的是，该加法器的最终结构是**将该方法不断递归运行下去**，最后得到的时间损耗仅仅是做单个加法运算的$log(N)$倍，但电路成本只增加了50%！下图是一个32位加法被拆分为两个16位运算的例子：
+​		进位选择加法器的原理也是将固定位数的加法运算分成更小的”块“，并在块中运用两个加法器分别计算进位分别是1、0的结果，最后由二选一复用器决定采用什么作为最后的结果。不同的是，该加法器的最终结构是**将该方法不断递归运行下去**，最后得到的时间损耗仅仅是做单个加法运算的 $log(N)$ 倍，但电路成本只增加了50%！下图是一个32位加法被拆分为两个16位运算的例子：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928152600170.png" alt="image-20240928152600170" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240928152600170.png?token=BF3QKB7AUHU52UAQHXHUMLLG7DRVU" style="zoom:50%;" />
 
 ## Multiplication
 

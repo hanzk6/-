@@ -8,7 +8,9 @@
 
 ### 	Von Neumann Architecture（冯·诺伊曼结构）：
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240920113418071.png" alt="image-20240920113418071" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240920113418071.png" style="zoom:67%;" />
+
+
 
 ​	组成部分：
 
@@ -54,15 +56,17 @@ Compute-only（专注于计算任务） | Sensors and actuators are mostly analo
 
 ## Computer organization
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240920160339831.png" alt="image-20240920160339831" style="zoom: 33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240920160339831.png?token=BF3QKB2NHWQDIULNBWGCUVDG7DRJ2" style="zoom:33%;" />
 
 
 
-​		
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240920160406019.png?token=BF3QKBZKQACIQZVDEZPYNQDG7DRKI" style="zoom: 33%;" />
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240920160406019.png" alt="image-20240920160406019" style="zoom:33%;" />
 
-<img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240920163818765.png" alt="image-20240920163818765" style="zoom: 67%;" />
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240920163818765.png?token=BF3QKB6AW7CI5XU54DZDIDTG7DRK4" style="zoom:67%;" />
+
+
 
 ### From a High-Level Language to the Language of HardWare
 ```mermaid
