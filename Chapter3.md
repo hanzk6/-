@@ -154,7 +154,7 @@ $$
 
 <img src="C:\Users\28067\AppData\Roaming\Typora\typora-user-images\image-20240928151004487.png" alt="image-20240928151004487" style="zoom:50%;" />
 
-​		上述结果通过数学知识可得，当$k$的值为下值时，效率最高：
+​		上述结果通过数学知识可得，当 $k$ 的值为下值时，效率最高：
 
 $$
 \large k=\sqrt{\frac{Nt_{mux}}{2t_{carry}}}
