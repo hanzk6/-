@@ -85,7 +85,7 @@ Compute-only（专注于计算任务） | Sensors and actuators are mostly analo
 
 ​	Wafer （晶圆）：制作半导体时所使用的硅晶片，如下图所示
 
-<img src="https://ts1.cn.mm.bing.net/th/id/R-C.de34ad7385eb8275b219dd32b6761af9?rik=jQryWoydbufNLA&riu=http%3a%2f%2fwww.51jiuhuo.com%2fupload%2f158097%2f2016010408591059779big.jpg&ehk=bJ2W3bKGZGAtdiQ16n3i3NxfkXudKu5I%2fVUscclfPBs%3d&risl=&pid=ImgRaw&r=0" alt="Wafer" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/R-C.jpg" style="zoom:25%;" />
 
 ​	Die （晶粒）：芯片未封装前的晶粒，其上已有芯片的所有功能电路。
 

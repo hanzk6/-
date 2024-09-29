@@ -100,7 +100,7 @@
 
 ​			但其有个致命的问题：在两数相等时，无法仅通过最高位判断二者是否相等，因此需要将每一位的结果再通过一个或非门判断相减结果是否均为零（是否相等），改进后的结果如下图所示：
 
-<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927202037240.png?token=BF3QKB277SWIHJ6PYKJ75STG7DRSI" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/image-20240927202735169.png?token=BF3QKBZKIFITKKTHS2EZVYTG7DRSW" style="zoom:33%;" />
 
 ​		在逻辑设计图中，ALU通常为如下的标志（并不是所有ALU都会有上述所有功能）：
 
