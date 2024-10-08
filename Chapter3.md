@@ -435,7 +435,7 @@ $$
 \large \pm(S) 1.XXXXX \times 2^{YYYYY}
 $$
 
-​			其中， $S$被称为**符号位**， $X$ 被称为**尾数码（fraction）**， $Y$ 被称为**阶码（exponent）**。整数部分的“1”为**隐含位**。IEEE 754标准（IEEE 二进制浮点数算术标准）规定了单精度浮点数和双精度浮点数的位组成：
+​			其中， $S$被称为**符号位**， $X$ 被称为**尾数码（significant digits/significand）**， $Y$ 被称为**阶码（exponent）**。整数部分的“1”为**隐含位**。IEEE 754标准（IEEE 二进制浮点数算术标准）规定了单精度浮点数和双精度浮点数的位组成：
 
 ![](https://raw.githubusercontent.com/hanzk6/Pictures/main/20241007140016.png)
 
@@ -480,7 +480,7 @@ $$
 \large \textcolor{red}{1} \quad \textcolor{green}{10000001} \quad \textcolor{blue}{01000000000000000000000}
 $$
 
-​			红色的符号位1表示**这是一个负数**；绿色的阶码1000001是**移位**表示，需要转为**真值**。也就是 $(10000001)_2 - (127)_{10} = (2)_{10}$  。尾数码为隐含的1再加上小数部分01，为 $(1)_2+(0.01)_2=(1.01)_2$ 。则最后的计算结果为：
+​			红色的符号位1表示**这是一个负数**；绿色的阶码1000001是**移位**表示，需要转为**真值**。也就是 $(10000001)_2-(127)_{10} = (2)_{10}$  。尾数码为隐含的1再加上小数部分01，为 $(1)_2+(0.01)_2=(1.01)_2$ 。则最后的计算结果为：
 
 $$
 \large (-1)^{1} \cdot (1.01)_{2} \cdot 2^{2} = (-1.25 \cdot 4)_{10} =    (-5.0)_{10}
@@ -537,3 +537,90 @@ $$
 ​		阶码全为1、尾数码不全为0： $NaN$，表示非法计算结果或未定义的结果（如0.0/0.0、负数的平方根、对数运算时底数为负数等）
 
 ​		阶码全为0，此时浮点数的表示为**非规格化数**，此时**尾数码将不再有隐含的1.0**。可用于表示非常接近0的小数。
+
+### Floating point addition
+
+#### 			运算原理及运算步骤
+
+​				1.**Alignment（对齐）**：将两个浮点数的阶码进行比较，将较大的阶码作为最后结果的阶码，并对阶码较小的浮点数进行对齐（阶码每递增1，尾数码就要对应逻辑右移一位）
+
+​				2.**Addition of significands**：将已经对齐好的两浮点数的尾数码相加，得到一个结果。（当然此时的相加减需要考虑到两个数的符号）
+
+​				3.**Normalisation of the result**：上述的结果未必符合浮点数表示的正确规范，因此要结合尾数码和阶码对结果进行调整（正如我们十进制的科学计数法需要调整小数点的位置一样）
+
+​				4.**Rounding（舍入）**：对结果进行舍入的调整，具体的四种舍入方法将会在后文给出。
+
+#### 			运算实例：
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/202410081449921.png" style="zoom:33%;" />
+
+#### 			Algorithm：
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/202410081453828.png"  />
+
+​				具体分析：左上半部分是我们所说的比对对齐操作，通过一个小型（只支持减法）的ALU来判断两个浮点数的阶码大小及差距并将结果返回至控制中心，控制中心再反过来根据结果控制尾数码的右移。在右移之后，尾数码便能进行真正的加减法（与符号位有关），并在后续执行Normalize和Round过程。
+
+### Multiplication
+
+$$
+\large (S_1 \cdot 2^{E_1}) \cdot (S_2 \cdot 2^{E_2}) = (S_1 \cdot S_2) \cdot 2^{E_1+E_2-Bias}
+$$
+
+#### 			图示：
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/202410081525966.png" style="zoom:33%;" />
+
+### Division-Brief
+
+​				除法与乘法步骤几乎相同。
+
+​				1.阶码相减
+
+​				2.尾数码相除
+
+​				3.Normalisation
+
+​				4.Rounding
+
+​				5.Sign
+
+### Accurate Arithmetic（对浮点数进行舍入的方法）
+
+​			以下面的运算为例：
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/202410081607070.png" style="zoom:25%;" />
+
+​			如果最终只有三位有效位，则需要进行取舍：
+
+​				**Guard位**：有效位的低一位，也就是本例中的“5”。
+
+​				**Round位**：在英文中这既代表“Round”这一过程，同时也可表示Guard位的低一位，也就是本例中的6.
+
+​				**Sticky位**：只要在Round位的更低位中有非0的存在即为1（用于在某些特定情况下判断是否恰好在两精确数的中间）
+
+​				**units in the last place(ulp)**：偏移比例，前后相加必为1.例如：若浮点数可以精确表示2.33和2.38，则对2.35的表示中，2.33的ulp即为0.4ulp，2.38即为0.6ulp。
+
+#### 			四种舍入方法
+
+##### 				always round up
+
+​				以最接近且大于的数替代
+
+##### 				always round down
+
+​				以最接近且不大于的数替代
+
+##### 				truncate
+
+​				直接将有效位之外的位截断
+
+##### 				round to last even
+
+​				1.寻找ulp最小的数替代
+
+​				2.如果出现ulp均为0.5的情况：
+
+​					**总是使最低有效位（LSB)为0**（如下图）
+
+<img src="https://raw.githubusercontent.com/hanzk6/Pictures/main/202410081623075.png" style="zoom: 50%;" />
+
