@@ -14,7 +14,7 @@
 
 ## Signed and Unsigned Numbers
 
-​		Sign Magnitude：反码
+​		Sign Magnitude：原码
 
 ​		Two's Complement：二进制补码
 
